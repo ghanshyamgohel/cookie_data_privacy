@@ -22,27 +22,30 @@ call_user_func(
         );
 
         // Add external TS setup
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTypoScriptSetup('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:' . $extKey . '/Configuration/TypoScript/External/IncludeTs.typoscript">');
+        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTypoScriptSetup('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:cookie_data_privacy/Configuration/TypoScript/External/IncludeTs.typoscript">');
 
-		// wizards
-		/*\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
-			'mod {
-				wizards.newContentElement.wizardItems.plugins {
-					elements {
-						ext1 {
-							icon = ' . \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($extKey) . 'Resources/Public/Icons/user_plugin_ext1.svg
-							title = LLL:EXT:cookie_data_privacy/Resources/Private/Language/locallang_db.xlf:tx_cookie_data_privacy_domain_model_ext1
-							description = LLL:EXT:cookie_data_privacy/Resources/Private/Language/locallang_db.xlf:tx_cookie_data_privacy_domain_model_ext1.description
-							tt_content_defValues {
-								CType = list
-								list_type = cookiedataprivacy_ext1
-							}
-						}
-					}
-					show = *
-				}
-		   }'
-		);*/
+        //Add backend module
+        if (TYPO3_MODE === 'BE') {
+            \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTypoScriptSetup(
+                'module.tx_cookiedataprivacy_tools_cookiedataprivacymod1 {
+                    view {
+                        templateRootPaths {
+                            0 = EXT:cookie_data_privacy/Resources/Private/Backend/Templates/
+                            1 = EXT:cookie_data_privacy/Resources/Private/Backend/Templates/
+                        }
+                        partialRootPaths {
+                            0 = EXT:cookie_data_privacy/Resources/Private/Backend/Partials/
+                            1 = EXT:cookie_data_privacy/Resources/Private/Backend/Partials/
+                        }
+                        layoutRootPaths {
+                            0 = EXT:cookie_data_privacy/Resources/Private/Backend/Layouts/
+                            1 = EXT:cookie_data_privacy/Resources/Private/Backend/Layouts/
+                        }
+                    }
+                    persistence < plugin.tx_cookiedataprivacy_ext1.persistence
+                }'
+            );
+        }
     },
     $_EXTKEY
 );

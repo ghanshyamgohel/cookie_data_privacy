@@ -1,32 +1,28 @@
-﻿.. ==================================================
-.. FOR YOUR INFORMATION
-.. --------------------------------------------------
-.. -*- coding: utf-8 -*- with BOM.
-
 .. include:: ../Includes.txt
 
 
-.. _admin-manual:
+.. _adminmanual:
 
+====================
 Administrator Manual
 ====================
 
 .. _admin-installation:
 
 Installation
-------------
+============
 
-To install the extension, perform the following steps:
+You need to follow the steps to install the extension.
 
-#. Download vhs dependency extension from TYPO3 Extension Repository and install the extension from extension manager.
-#. Download cookie_data_privacy extension from TYPO3 Extension Repository.
-#. Install the extension from extension manager.
+- Download `vhs <https://extensions.typo3.org/extension/vhs>`__ dependency extension from TYPO3 Extension Repository and install the extension from extension manager.
+- Download cookie_data_privacy extension from TYPO3 Extension Repository.
+- Install the extension from extension manager.
 
 .. figure:: ../Images/import_extension.png
    :alt: Extension Manager
 
 Static Templates
-""""""""""""""""
+================
 
 Add cookie_data_privacy static template
 
@@ -35,12 +31,12 @@ Add cookie_data_privacy static template
 
 .. important::
 
-   Default language label can be change from constants
+   You can change the default language label from constants.
 
 .. _admin-configuration:
 
 Backend Configuration
----------------------
+=====================
 
 Add your domain and root page ID to support multi-domain.
 

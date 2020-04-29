@@ -40,18 +40,3 @@ plugin.tx_cookiedataprivacy_ext1 {
     dataCheckbox2 = *Yes, I would like to receive information according to my request from the company GmbH and I agree that the company GmbH processes my personal data (name, e-mail address) to process my request. company GmbH only transfers the personal data to processors (for example, IT service providers). This consent can be revoked by you at any time free of charge and without giving reasons by sending an e-mail with the subject "Withdrawal" to <a href="mailto:office@domain.at">office(at)domain.at</a>.
   }
 }
-
-module.tx_cookiedataprivacy_mod1 {
-  view {
-    # cat=module.tx_cookiedataprivacy_mod1/file; type=string; label=Path to template root (BE)
-    templateRootPath = EXT:cookie_data_privacy/Resources/Private/Backend/Templates/
-    # cat=module.tx_cookiedataprivacy_mod1/file; type=string; label=Path to template partials (BE)
-    partialRootPath = EXT:cookie_data_privacy/Resources/Private/Backend/Partials/
-    # cat=module.tx_cookiedataprivacy_mod1/file; type=string; label=Path to template layouts (BE)
-    layoutRootPath = EXT:cookie_data_privacy/Resources/Private/Backend/Layouts/
-  }
-  persistence {
-    # cat=module.tx_cookiedataprivacy_mod1//a; type=string; label=Default storage PID
-    storagePid =
-  }
-}

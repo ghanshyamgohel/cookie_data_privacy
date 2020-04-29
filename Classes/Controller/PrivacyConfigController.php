@@ -18,6 +18,7 @@ namespace TYPO3Liebhaber\CookieDataPrivacy\Controller;
  use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
  use TYPO3\CMS\Core\Utility\GeneralUtility;
  use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+ use TYPO3\CMS\Extbase\Annotation\Inject;
 
 class PrivacyConfigController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
@@ -74,7 +75,7 @@ class PrivacyConfigController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
         $privacyConfigModel->setDomain($domain);
         $privacyConfigModel->setRootPageUid($rootPageUid);
 
-        $this->addFlashMessage('Successfully domain record has been added!', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::OK);
+        $this->addFlashMessage('You have successfully added the domain record.', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::OK);
         $this->privacyConfigRepository->add($privacyConfigModel);
         $this->redirect('list');
     }
@@ -138,57 +139,64 @@ class PrivacyConfigController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
         
         // JS external file
         $jsexternal = $arguments['privacyconfig']['fileinclude']['js'];
-        foreach($jsexternal as $key=>$value){
-            $countModelObj = $garbage.$key;
-            $countModelObj = GeneralUtility::makeInstance('TYPO3Liebhaber\CookieDataPrivacy\Domain\Model\FileInclude');
-            $jsFolderName = 'js';
-            $jsFileName = substr( md5( (int)$value['uid'] ), 0, 10 ); 
+        
+        if(!empty($jsexternal)){
+            foreach($jsexternal as $key=>$value){
+                $jsFileName = '';
+                $countModelObj = $garbage.$key;
+                $countModelObj = GeneralUtility::makeInstance('TYPO3Liebhaber\CookieDataPrivacy\Domain\Model\FileInclude');
+                $jsFolderName = 'js';
+                $jsFileName = substr( md5( (int)$value['uid'] ), 0, 10 ); 
 
-            $originalPath = $value['originalPath'];
-            $countModelObj->setOriginalPath($originalPath);
-            $path = $this->fetchExternal($originalPath, $jsFolderName, $jsFileName);
-            $countModelObj->setPath($path);
-            
-            $pathUid = (int)$value['uid'];
-            if($pathUid){//updates
-                $countModelObj = $this->fileIncludeRepository->findByUid($pathUid);
+                $originalPath = $value['originalPath'];
                 $countModelObj->setOriginalPath($originalPath);
+                $path = $this->fetchExternal($originalPath, $jsFolderName, $jsFileName);
                 $countModelObj->setPath($path);
+                
+                $pathUid = (int)$value['uid'];
+                if($pathUid){//updates
+                    $countModelObj = $this->fileIncludeRepository->findByUid($pathUid);
+                    $countModelObj->setOriginalPath($originalPath);
+                    $countModelObj->setPath($path);
+                }
+                
+                $objectStorage->attach($countModelObj);
             }
-            
-            $objectStorage->attach($countModelObj);
+            $privacyConfigModel->setJsPathExternal($objectStorage);
         }
-        $privacyConfigModel->setJsPathExternal($objectStorage);
-
+        //DebuggerUtility::var_dump($objectStorage);exit;
         // CSS external file
         $objectStorage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage;
         $cssexternal = $arguments['privacyconfig']['fileinclude']['css'];
-        foreach($cssexternal as $key=>$value){
-            $cssCountModelObj = GeneralUtility::makeInstance('TYPO3Liebhaber\CookieDataPrivacy\Domain\Model\FileInclude');
-            $cssFolderName = 'css';
-            $cssFileName = substr( md5( (int)$value['uid'] ), 0, 10 ); 
+        if(!empty($cssexternal)){
+            foreach($cssexternal as $key=>$value){
+                $cssFileName = '';
+                $cssCountModelObj = GeneralUtility::makeInstance('TYPO3Liebhaber\CookieDataPrivacy\Domain\Model\FileInclude');
+                $cssFolderName = 'css';
+                $cssFileName = substr( md5( (int)$value['uid'] ), 0, 10 ); 
 
-            $originalPath = $value['originalPath'];
-            $cssCountModelObj->setOriginalPath($originalPath);
-            $path = $this->fetchExternal($originalPath, $cssFolderName, $cssFileName);
-            $cssCountModelObj->setPath($path);
-            
-            $pathUid = (int)$value['uid'];
-            if($pathUid){//updates
-                $cssCountModelObj = $this->fileIncludeRepository->findByUid($pathUid);
+                $originalPath = $value['originalPath'];
                 $cssCountModelObj->setOriginalPath($originalPath);
+                $path = $this->fetchExternal($originalPath, $cssFolderName, $cssFileName);
                 $cssCountModelObj->setPath($path);
+                
+                $pathUid = (int)$value['uid'];
+                if($pathUid){//updates
+                    $cssCountModelObj = $this->fileIncludeRepository->findByUid($pathUid);
+                    $cssCountModelObj->setOriginalPath($originalPath);
+                    $cssCountModelObj->setPath($path);
+                }
+                
+                $objectStorage->attach($cssCountModelObj);
             }
-            
-            $objectStorage->attach($cssCountModelObj);
+            $privacyConfigModel->setCssPathExternal($objectStorage);
         }
-        $privacyConfigModel->setCssPathExternal($objectStorage);
-
+        
         ### write TS for Include library ###
         $tsSourceFile = 'IncludeTs.txt.cp';$tsWritePath = 'Configuration/TypoScript/External/Domain/';
         $this->writeTSFile($tsSourceFile,$tsWritePath,$privacyConfigModel);
         
-        $this->addFlashMessage('Configuration has been updated!', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::OK);
+        $this->addFlashMessage('You have successfully updated the configuration.', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::OK);
         //DebuggerUtility::var_dump($privacyConfigModel);exit;
         $this->privacyConfigRepository->update($privacyConfigModel);
         $this->redirect('list');
@@ -202,7 +210,7 @@ class PrivacyConfigController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
      */
     public function deleteAction(\TYPO3Liebhaber\CookieDataPrivacy\Domain\Model\PrivacyConfig $privacyConfig)
     {
-        $this->addFlashMessage('Successfully domain record has been deleted', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::OK);
+        $this->addFlashMessage('You have successfully deleted the domain record.', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::OK);
         $this->privacyConfigRepository->remove($privacyConfig);
         $this->redirect('list');
     }
@@ -212,8 +220,8 @@ class PrivacyConfigController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
     **/
     public function fetchExternal($externalFilePath, $folderName, $fileName){
         if($externalFilePath){
-            $extPath = ExtensionManagementUtility::extPath('cookie_data_privacy');
-            $directory = $extPath.'Resources/Public/External/'.$folderName.'/';
+            $directory = GeneralUtility::getFileAbsFileName('fileadmin/cookie_data_privacy/External/'.$folderName.'/');
+            
             if (!file_exists($directory)) {
                 mkdir($directory, 0777, true);
             }
@@ -222,7 +230,7 @@ class PrivacyConfigController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
             $getData = file_get_contents($externalFilePath);
             file_put_contents($filenameAndPath, $getData);
 
-            $returnPath = 'EXT:cookie_data_privacy/Resources/Public/External/'.$folderName.'/'.$fileName.'.'.$folderName;
+            $returnPath = 'fileadmin/cookie_data_privacy/External/'.$folderName.'/'.$fileName.'.'.$folderName;
             return $returnPath;
         }else{
             return '';

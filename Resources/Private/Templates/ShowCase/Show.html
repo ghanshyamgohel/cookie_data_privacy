@@ -28,6 +28,16 @@
 		<v:variable.set name="cookieRevoke" value='<f:translate key="LLL:EXT:cookie_data_privacy/Resources/Private/Language/locallang.xlf:tx_cookiedataprivacy_cookie_bar.revoke" />' />
 	</f:else>
 </f:if>
+<f:if condition="{privacyConfig.popupBackground}">
+	<f:then><v:variable.set name="popupBackground" value='{privacyConfig.popupBackground}' /></f:then>
+	<f:else><v:variable.set name="popupBackground" value='#222' /></f:else>
+</f:if>
+<f:if condition="{privacyConfig.buttonBackground}">
+	<f:then><v:variable.set name="buttonBackground" value='{privacyConfig.buttonBackground}' /></f:then>
+	<f:else><v:variable.set name="buttonBackground" value='#c8c8c8' /></f:else>
+</f:if>
+		
+<f:if condition="{privacyConfig}">
 <v:asset.script name="{privacyConfig.domain}_cookie_data_privacy" dependencies="jquery" fluid="TRUE" rewrite="TRUE" overwrite="TRUE">
 	/*
 	 * deleteCookies 
@@ -71,8 +81,8 @@
 		window.cookieconsent.initialise({
 			position: '<f:format.raw value="{privacyConfig.position}" />',
 			palette:{
-		      popup: {background: '<f:format.raw value="{privacyConfig.popupBackground}" />'},
-		      button: {background: '<f:format.raw value="{privacyConfig.buttonBackground}" />'},
+		      popup: {background: '<f:format.raw value="{popupBackground}" />'},
+		      button: {background: '<f:format.raw value="{buttonBackground}" />'},
 		    },
 			cookie: {
 			        // This is the name of this cookie - you can ignore this
@@ -157,5 +167,6 @@
 	});
 	</f:if></f:if>
 </v:asset.script>
+</f:if>
 </f:section>
 </html>

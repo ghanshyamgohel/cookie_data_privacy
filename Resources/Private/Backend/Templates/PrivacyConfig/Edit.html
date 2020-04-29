@@ -7,8 +7,10 @@
 	<f:form.hidden name="privacyconfig[uid]" value="{privacyConfigs.uid}" />
 	<div class="row show-grid">
         <div class="col-lg-12">
-            <button type="reset" class="btn btn-default pull-right btn-reset">Reset</button>
-            <button type="submit" class="btn btn-default pull-right">Save</button>
+            <div class="btn-toolbar mb-3">
+                <button type="submit" class="btn btn-default btn-sm"><core:icon identifier="actions-document-save" size="small"/> Save</button>
+                <f:link.action action="list" class="btn btn-default btn-sm t3js-editform-close"><core:icon identifier="actions-close" size="small"/> Close</f:link.action>
+            </div>
         </div>
     </div>
     <div class="row">
@@ -19,128 +21,211 @@
                 <div class="panel-body">
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs">
-                        <li class="active"><a href="#jsexternal" data-toggle="tab">JS external</a></li>
+                        <li class="active"><a href="#jsexternal" data-toggle="tab">JavaScript external</a></li>
                         <li><a href="#cssexternal" data-toggle="tab">CSS external</a></li>
                         <li><a href="#settings" data-toggle="tab">Settings</a></li>
                     </ul>
 
                     <div class="tab-content">
                         <div class="tab-pane fade in active" id="jsexternal">
-                        	<div class="col-lg-6 margin-top">
-								<div class="form-group">
-                                    <div class="checkbox">
-                                        <label><f:form.checkbox name="privacyconfig[inFooter]" value="1" checked="{privacyConfigs.inFooter} == 1"/>JS in Footer?</label>
+                            <fieldset class="form-section">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <div class="checkbox">
+                                                <label><f:form.checkbox name="privacyconfig[inFooter]" value="1" checked="{privacyConfigs.inFooter} == 1"/>Would you like to put JavaScript in the Footer?</label>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-	                                    <label>JS script</label>
-	                                    <f:form.textarea name="privacyconfig[jsScript]" rows="10" class="form-control" value="{privacyConfigs.jsScript}"/>
-	                                </div>
-	                                <div class="form-group">
-	                                    <label>External JS library links</label>
-	                                    
-		                                    <f:if condition="{privacyConfigs.jsPathExternal}">
-		                                    	<f:then>
-		                                    		<f:for each="{privacyConfigs.jsPathExternal}" as="pathList" iteration="Iteration">
-		                                    			<div id="js-row-{Iteration.cycle}" class="cookie-js-row">
-			                                    			<f:form.hidden name="privacyconfig[fileinclude][js][{Iteration.cycle}][uid]" value="{pathList.uid}" />
-				                                    		<f:form.textfield name="privacyconfig[fileinclude][js][{Iteration.cycle}][originalPath]" class="form-control" value="{pathList.originalPath}" />
-				                                    		<p class="help-block">[PATH: {pathList.path}]</p>
-		                                    			</div>
-	                                    			</f:for>
-		                                    	</f:then>
-		                                    	<f:else>
-		                                    		<div id="js-row-0" class="cookie-js-row">
-			                                    		<f:form.textfield name="privacyconfig[fileinclude][js][0][originalPath]" class="form-control" />
-		                                    			<p class="help-block">[PATH]</p>
-	                                    			</div>
-		                                    	</f:else>
-		                                    </f:if>
-	                                    
-	                                    <div id="js-external-list"></div>
-	                                </div>
-	                                <input type="hidden" id="jsTotRow" value="<f:count subject='{privacyConfigs.jsPathExternal}' />" />
-	                                <a href="javascript:;" class="add-new-js btn btn-outline btn-primary btn-xs"><i class="fa fa-plus-square"></i> Add New</a>
-	                                <a href="javascript:;" class="delete-js-row btn btn-outline btn-primary btn-xs"><i class="fa fa-minus-square"> Delete Library</i></a>
                                 </div>
-                        	</div>
+                            </fieldset>
+                            <fieldset class="form-section">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label>JavaScript: [eg. google script]</label>
+                                            <f:form.textarea name="privacyconfig[jsScript]" rows="10" class="form-control" value="{privacyConfigs.jsScript}"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <fieldset class="form-section">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label>External JavaScript library links: [eg. cdn]</label>
+                                                <f:if condition="{privacyConfigs.jsPathExternal}">
+                                                    <f:then>
+                                                        <f:for each="{privacyConfigs.jsPathExternal}" as="pathList" iteration="Iteration">
+                                                            <div id="js-row-{Iteration.cycle}" class="cookie-js-row">
+                                                                <f:form.hidden name="privacyconfig[fileinclude][js][{Iteration.cycle}][uid]" value="{pathList.uid}" />
+                                                                <f:form.textfield name="privacyconfig[fileinclude][js][{Iteration.cycle}][originalPath]" class="form-control" value="{pathList.originalPath}" />
+                                                                <p class="help-block">[PATH: {pathList.path}]</p>
+                                                            </div>
+                                                        </f:for>
+                                                    </f:then>
+                                                    <f:else>
+                                                        <div id="js-row-0" class="cookie-js-row">
+                                                            <f:form.textfield name="privacyconfig[fileinclude][js][0][originalPath]" class="form-control" />
+                                                            <p class="help-block">[PATH]</p>
+                                                        </div>
+                                                    </f:else>
+                                                </f:if>
+                                            
+                                            <div id="js-external-list"></div>
+                                            <f:if condition="{privacyConfigs.jsPathExternal}">
+                                                <f:then><input type="hidden" id="jsTotRow" value="<f:count subject='{privacyConfigs.jsPathExternal}' />" /></f:then>
+                                                <f:else><input type="hidden" id="jsTotRow" value="1" /></f:else>
+                                            </f:if>
+                                            <a href="javascript:;" class="add-new-js btn btn-outline btn-primary btn-xs"><i class="fa fa-plus-square"></i> Add New</a>
+                                            <a href="javascript:;" class="delete-js-row btn btn-outline btn-primary btn-xs"><i class="fa fa-minus-square"></i> Delete Library</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
                         </div>
                         <div class="tab-pane fade" id="cssexternal">
-                        	<div class="col-lg-6 margin-top">
-                        		<div class="form-group">
-                                    <label>External CSS library links</label>
-                                    <f:if condition="{privacyConfigs.cssPathExternal}">
-                                    	<f:then>
-                                    		<f:for each="{privacyConfigs.cssPathExternal}" as="cssPathList" iteration="Iteration">
-                                    			<div id="css-row-{Iteration.cycle}" class="cookie-css-row">
-	                                    			<f:form.hidden name="privacyconfig[fileinclude][css][{Iteration.cycle}][uid]" value="{cssPathList.uid}" />
-		                                    		<f:form.textfield name="privacyconfig[fileinclude][css][{Iteration.cycle}][originalPath]" class="form-control" value="{cssPathList.originalPath}" />
-	                                    			<p class="help-block">[PATH: {cssPathList.path}]</p>
-                                    			</div>
-                                			</f:for>
-                                    	</f:then>
-                                    	<f:else>
-                                    		<div id="css-row-0" class="cookie-css-row">
-	                                    		<f:form.textfield name="privacyconfig[fileinclude][css][0][originalPath]" class="form-control" />
-	                                    		<p class="help-block">[PATH]</p>
-                                    		</div>
-                                    	</f:else>
-                                    </f:if>
+                            <fieldset class="form-section">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label>External CSS library links: [eg. google fonts]</label>
+                                            <f:if condition="{privacyConfigs.cssPathExternal}">
+                                                <f:then>
+                                                    <f:for each="{privacyConfigs.cssPathExternal}" as="cssPathList" iteration="Iteration">
+                                                        <div id="css-row-{Iteration.cycle}" class="cookie-css-row">
+                                                            <f:form.hidden name="privacyconfig[fileinclude][css][{Iteration.cycle}][uid]" value="{cssPathList.uid}" />
+                                                            <f:form.textfield name="privacyconfig[fileinclude][css][{Iteration.cycle}][originalPath]" class="form-control" value="{cssPathList.originalPath}" />
+                                                            <p class="help-block">[PATH: {cssPathList.path}]</p>
+                                                        </div>
+                                                    </f:for>
+                                                </f:then>
+                                                <f:else>
+                                                    <div id="css-row-0" class="cookie-css-row">
+                                                        <f:form.textfield name="privacyconfig[fileinclude][css][0][originalPath]" class="form-control" />
+                                                        <p class="help-block">[PATH]</p>
+                                                    </div>
+                                                </f:else>
+                                            </f:if>
 
-                                    <div id="css-external-list"></div>
-                                </div>
-                                <input type="hidden" id="cssTotRow" value="<f:count subject='{privacyConfigs.cssPathExternal}' />" />
-                                <a href="javascript:;" class="add-new-css btn btn-outline btn-primary btn-xs"><i class="fa fa-plus-square"></i> Add New</a>
-                                <a href="javascript:;" class="delete-css-row btn btn-outline btn-primary btn-xs"><i class="fa fa-minus-square"> Delete Library</i></a>
-                        	</div>
-                        </div>
-                        <div class="tab-pane fade" id="settings">
-                        	<div class="col-lg-6 margin-top">
-                        		<div class="form-group">
-                                    <div class="checkbox">
-                                        <label><f:form.checkbox name="privacyconfig[enableFormPrivacy]" value="1" checked="{privacyConfigs.enableFormPrivacy} == 1" />Enable form privacy?</label>
+                                            <div id="css-external-list"></div>
+                                            <f:if condition="{privacyConfigs.cssPathExternal}">
+                                                <f:then><input type="hidden" id="cssTotRow" value="<f:count subject='{privacyConfigs.cssPathExternal}' />" /></f:then>
+                                                <f:else><input type="hidden" id="cssTotRow" value="1" /></f:else>
+                                            </f:if>
+                                            <a href="javascript:;" class="add-new-css btn btn-outline btn-primary btn-xs"><i class="fa fa-plus-square"></i> Add New</a>
+                                            <a href="javascript:;" class="delete-css-row btn btn-outline btn-primary btn-xs"><i class="fa fa-minus-square"></i> Delete Library</a>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label>Form IDs:</label>
-                                    <f:form.textfield name="privacyconfig[formId]" class="form-control" value="{privacyConfigs.formId}"/>
-                                    <p class="help-block">[Data privacy form IDs separated by commas]</p>
+                            </fieldset>
+                        </div>
+                        <div class="tab-pane fade" id="settings">
+                            <fieldset class="form-section">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <div class="checkbox">
+                                                <label><f:form.checkbox name="privacyconfig[enableFormPrivacy]" value="1" checked="{privacyConfigs.enableFormPrivacy} == 1" />Do you want to enable data privacy for form?</label>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                	<label>Cookie popup position</label>
-                                	<select name="tx_cookiedataprivacy_tools_cookiedataprivacymod1[privacyconfig][position]" class="form-control">
-                                		<option value="bottom" <f:if condition="{privacyConfigs.position} == 'bottom'">selected</f:if> >Bottom</option>
-                                        <option value="top" <f:if condition="{privacyConfigs.position} == 'top'">selected</f:if> >Top</option>
-                                	</select>
+                            </fieldset>
+                            <fieldset class="form-section">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label>Form ID/s:</label>
+                                            <f:form.textfield name="privacyconfig[formId]" class="form-control" value="{privacyConfigs.formId}"/>
+                                            <p class="help-block">[Data privacy form ID/s separated by commas]</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label>Cookie popup background color</label>
-                                    <f:form.textfield name="privacyconfig[popupBackground]" class="form-control" value="{privacyConfigs.popupBackground}"/>
+                            </fieldset>
+                            <fieldset class="form-section">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label>Cookie popup position:</label>
+                                            <select name="tx_cookiedataprivacy_tools_cookiedataprivacymod1[privacyconfig][position]" class="form-control">
+                                                <option value="bottom" <f:if condition="{privacyConfigs.position} == 'bottom'">selected</f:if> >Bottom</option>
+                                                <option value="top" <f:if condition="{privacyConfigs.position} == 'top'">selected</f:if> >Top</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label>Cookie button background color</label>
-                                    <f:form.textfield name="privacyconfig[buttonBackground]" class="form-control" value="{privacyConfigs.buttonBackground}"/>
+                            </fieldset>
+                            <fieldset class="form-section">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label>Cookie popup background color: (default: #222)</label>
+                                            <f:form.textfield name="privacyconfig[popupBackground]" class="form-control" value="{privacyConfigs.popupBackground}"/>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label>Domain</label>
-                                    <f:form.textfield name="privacyconfig[domain]" class="form-control" value="{privacyConfigs.domain}"/>
+                            </fieldset>
+                            <fieldset class="form-section">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label>Cookie button background color: (default: #c8c8c8)</label>
+                                            <f:form.textfield name="privacyconfig[buttonBackground]" class="form-control" value="{privacyConfigs.buttonBackground}"/>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label>Cookie expiry in days</label>
-                                    <f:form.textfield name="privacyconfig[expiryDay]" class="form-control" value="{privacyConfigs.expiryDay}"/>
+                            </fieldset>
+                            <fieldset class="form-section">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label>Domain: [Without protocol http:// or https://]</label>
+                                            <f:form.textfield name="privacyconfig[domain]" class="form-control" value="{privacyConfigs.domain}" additionalAttributes="{required:'required'}"/>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label>Root page UID [Your tree root UID]</label>
-                                    <f:form.textfield name="privacyconfig[rootPageUid]" class="form-control" value="{privacyConfigs.rootPageUid}"/>
+                            </fieldset>
+                            <fieldset class="form-section">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label>Root page ID: [Your tree root ID]</label>
+                                            <f:form.textfield name="privacyconfig[rootPageUid]" class="form-control" value="{privacyConfigs.rootPageUid}"/>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label>Cookie page UID</label>
-                                    <f:form.textfield name="privacyconfig[cookiePageUid]" class="form-control" value="{privacyConfigs.cookiePageUid}"/>
+                            </fieldset>
+                            <fieldset class="form-section">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label>Cookie expiry in days:</label>
+                                            <f:form.textfield name="privacyconfig[expiryDay]" class="form-control" value="{privacyConfigs.expiryDay}" />
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label>Data Privacy page UID</label>
-                                    <f:form.textfield name="privacyconfig[dataPrivacyPageUid]" class="form-control" value="{privacyConfigs.dataPrivacyPageUid}"/>
+                            </fieldset>
+                            <fieldset class="form-section">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label>Cookie page ID:</label>
+                                            <f:form.textfield name="privacyconfig[cookiePageUid]" class="form-control" value="{privacyConfigs.cookiePageUid}"/>
+                                        </div>
+                                    </div>
                                 </div>
-                        	</div>
+                            </fieldset>
+                            <fieldset class="form-section">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label>Data Privacy page ID:</label>
+                                            <f:form.textfield name="privacyconfig[dataPrivacyPageUid]" class="form-control" value="{privacyConfigs.dataPrivacyPageUid}"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
                         </div>
                     </div>
                 </div>

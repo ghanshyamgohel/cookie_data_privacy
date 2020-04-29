@@ -16,6 +16,7 @@ namespace TYPO3Liebhaber\CookieDataPrivacy\Controller;
  * ShowCaseController
  */
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+use TYPO3\CMS\Extbase\Annotation\Inject;
 
 class ShowCaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
@@ -66,16 +67,18 @@ class ShowCaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
         }
 
         $privacyConfigs = $this->privacyConfigRepository->findByRootPageUid($rootPageUid);
+        
         $formIdsString = '';
-        if($privacyConfigs[0]->getFormId()){
-            $formIdsArr = explode(',',$privacyConfigs[0]->getFormId());
-            array_walk($formIdsArr, function(&$value, $key) { $value = '#'.$value; } );
-            $formIdsString = implode(',',$formIdsArr);
+        if(!empty($privacyConfigs[0])){
+            if($privacyConfigs[0]->getFormId()){
+                $formIdsArr = explode(',',$privacyConfigs[0]->getFormId());
+                array_walk($formIdsArr, function(&$value, $key) { $value = '#'.$value; } );
+                $formIdsString = implode(',',$formIdsArr);
+            }
+            $this->view
+            ->assign('privacyConfig', $privacyConfigs[0])
+            ->assign('formIdsString', $formIdsString);
         }
-        $this->view
-        ->assign('privacyConfig', $privacyConfigs[0])
-        ->assign('formIdsString', $formIdsString);
-
         if (empty($cookie_status) || $cookie_status === 'allow') {
             $this->view->assign('status', 1);
         } elseif ($cookie_status === 'deny') {

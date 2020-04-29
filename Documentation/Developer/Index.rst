@@ -1,19 +1,16 @@
-﻿.. ==================================================
-.. FOR YOUR INFORMATION
-.. --------------------------------------------------
-.. -*- coding: utf-8 -*- with BOM.
-
 .. include:: ../Includes.txt
 
+ 
 .. _developer:
 
+================
 Developer Manual
 ================
 
 .. _condition:
 
 TypoScript condition
---------------------
+====================
 
 A TypoScript condition to check cookie status. 
 
@@ -26,32 +23,32 @@ A TypoScript condition to check cookie status.
 .. _utility:
 
 Utility
--------
+=======
 
 To get status of cookie in your controller/PHP file (status: allow or deny)
 
 .. code-block:: php
 
-	use TYPO3Liebhaber\CookieDataPrivacy\Utility\CookieDataPrivacyUtility; // put this line before your controler start
+   use TYPO3Liebhaber\CookieDataPrivacy\Utility\CookieDataPrivacyUtility; // put this line before your controller start
 
-	$status = CookieDataPrivacyUtility::getStatus();
+   $status = CookieDataPrivacyUtility::getStatus();
 
 .. _viewHelpers:
 
 ViewHelpers
------------
+===========
 
 To get status of cookie in your fluid template (status: allow or deny)
 
-::
+.. code-block:: php
 
    {namespace cp=TYPO3Liebhaber\CookieDataPrivacy\ViewHelpers}
 
    <cp:cookieDataPrivacy /> or inline {cp:cookieDataPrivacy()}
 
-To get mandatory checkboxes for forms/newsletter/registration form etc. May multiple forms has different text, so add your text in locallang.xlf with different translateKey.
+To get mandatory checkbox for contact form/newsletter/registration form etc. May multiple forms have different text, so You need to add your text in locallang.xlf with different translateKey.
 
-::
+.. code-block:: php
 
    {namespace cp=TYPO3Liebhaber\CookieDataPrivacy\ViewHelpers}
 
@@ -60,10 +57,10 @@ To get mandatory checkboxes for forms/newsletter/registration form etc. May mult
 .. _frontend:
 
 Frontend
---------
+========
 
 Revoke button
 
-::
+.. code-block:: php
 
    <button id="cookie-btn-open" class="btn btn-primary">Revoke</button>

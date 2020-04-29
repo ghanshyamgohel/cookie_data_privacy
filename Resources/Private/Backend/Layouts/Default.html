@@ -1,67 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Admin panel : Configuration</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="{f:uri.resource(path: 'Administration/vendor/bootstrap/css/bootstrap.min.css')}" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="{f:uri.resource(path: 'Administration/vendor/metisMenu/metisMenu.min.css')}" rel="stylesheet">
-    
-    <!-- DataTables CSS -->
-    <link href="{f:uri.resource(path: 'Administration/vendor/datatables-plugins/dataTables.bootstrap.css')}" rel="stylesheet">
-
-    <!-- DataTables Responsive CSS -->
-    <link href="{f:uri.resource(path: 'Administration/vendor/datatables-responsive/dataTables.responsive.css')}" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="{f:uri.resource(path: 'Administration/dist/css/sb-admin-2.css')}" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="{f:uri.resource(path: 'Administration/vendor/font-awesome/css/font-awesome.min.css')}" rel="stylesheet" type="text/css">
-    <link href="{f:uri.resource(path: 'Administration/css/common.css')}" rel="stylesheet" type="text/css">
-</head>
-
-<body>
-
-    <div id="wrapper">
-    	<div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Cookie Pravicy & Data Pravicy (DSGVO)</h1>
+<f:be.container includeCssFiles="{0:'EXT:cookie_data_privacy/Resources/Public/Administration/css/common.css'}" includeJsFiles="{0: 'EXT:cookie_data_privacy/Resources/Public/Administration/js/jquery.min.js',2: 'EXT:cookie_data_privacy/Resources/Public/Administration/js/common.js'}">
+    <div class="typo3-fullDoc">
+        <div id="typo3-docheader">
+            <div class="typo3-docheader-functions">
+                <div class="left">
+                    
                 </div>
-                <!-- /.col-lg-12 -->
+                <div class="right">
+                    <f:be.pagePath />
+                    <f:be.pageInfo />
+                </div>
             </div>
-	    	<f:flashMessages />
-			<f:render section="content" />
-		</div>
+            <div class="typo3-docheader-buttons">
+                <div class="left">
+
+                </div>
+                <div class="right">
+                    <f:be.buttons.shortcut />
+                </div>
+            </div>
+
+        </div>
+        <div id="typo3-docbody">
+            <div id="typo3-inner-docbody">
+                <h1>Cookie Pravicy & Data Pravicy (DSGVO)</h1>
+                <f:flashMessages />
+                <f:render section="content" />
+            </div>
+        </div>
     </div>
-
-    <!-- jQuery -->
-    <script src="{f:uri.resource(path: 'Administration/vendor/jquery/jquery.min.js')}"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="{f:uri.resource(path: 'Administration/vendor/bootstrap/js/bootstrap.min.js')}"></script>
-    
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="{f:uri.resource(path: 'Administration/vendor/metisMenu/metisMenu.min.js')}"></script>
-
-    <!-- DataTables JavaScript -->
-    <script src="{f:uri.resource(path: 'Administration/vendor/datatables/js/jquery.dataTables.min.js')}"></script>
-    <script src="{f:uri.resource(path: 'Administration/vendor/datatables-plugins/dataTables.bootstrap.min.js')}"></script>
-    <script src="{f:uri.resource(path: 'Administration/vendor/datatables-responsive/dataTables.responsive.js')}"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="{f:uri.resource(path: 'Administration/dist/js/sb-admin-2.js')}"></script>
-    <script src="{f:uri.resource(path: 'Administration/js/common.js')}"></script>
-</body>
-</html>
+</f:be.container>

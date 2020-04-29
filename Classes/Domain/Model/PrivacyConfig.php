@@ -15,6 +15,8 @@ namespace TYPO3Liebhaber\CookieDataPrivacy\Domain\Model;
 /**
  * PrivacyConfig
  */
+use TYPO3\CMS\Extbase\Annotation\ORM\Cascade;
+
 class PrivacyConfig extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
     /**

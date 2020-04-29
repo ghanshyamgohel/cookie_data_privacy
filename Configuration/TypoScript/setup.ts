@@ -92,18 +92,3 @@ plugin.tx_cookiedataprivacy._CSS_DEFAULT_STYLE (
         color:green;
     }
 )
-
-# Module configuration
-module.tx_cookiedataprivacy_tools_cookiedataprivacymod1 {
-  persistence {
-    storagePid = {$module.tx_cookiedataprivacy_mod1.persistence.storagePid}
-  }
-  view {
-    templateRootPaths.0 = EXT:cookie_data_privacy/Resources/Private/Backend/Templates/
-    templateRootPaths.1 = {$module.tx_cookiedataprivacy_mod1.view.templateRootPath}
-    partialRootPaths.0 = EXT:cookie_data_privacy/Resources/Private/Backend/Partials/
-    partialRootPaths.1 = {$module.tx_cookiedataprivacy_mod1.view.partialRootPath}
-    layoutRootPaths.0 = EXT:cookie_data_privacy/Resources/Private/Backend/Layouts/
-    layoutRootPaths.1 = {$module.tx_cookiedataprivacy_mod1.view.layoutRootPath}
-  }
-}

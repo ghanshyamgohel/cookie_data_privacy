@@ -15,10 +15,10 @@
   "license": [
     "GPL-2.0+"
   ],
-  "version": "9.1.1",
+  "version": "10.4.0",
   "require": {
-    "typo3/cms": ">=7.6.13 <9.5.99",
-    "fluidtypo3/vhs": ">=3.1.0 <8.7.99"
+    "typo3/cms": ">=8.7.15 <10.4.99",
+    "fluidtypo3/vhs": ">=5.0.0 <6.1.99"
   },
   "autoload": {
     "psr-4": {

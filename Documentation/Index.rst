@@ -1,60 +1,74 @@
-﻿.. ==================================================
-.. FOR YOUR INFORMATION
-.. --------------------------------------------------
-.. -*- coding: utf-8 -*- with BOM.
-
+.. every .rst file should include Includes.txt
+.. use correct path!
+ 
 .. include:: Includes.txt
+
+
+.. Every manual should have a start label for cross-referencing to
+.. start page. Do not remove this!
 
 .. _start:
 
 =============================================================
-Cookie Privacy & Data Privacy (DSGVO)
+ Cookie Privacy & Data Privacy (DSGVO)
 =============================================================
 
-.. only:: html
+:Version:
+   |release|
 
-	:Classification:
-		cookie_data_privacy
+:Language:
+   en
 
-	:Version:
-		|release|
+:Authors:
+   Ghanshyam Gohel
 
-	:Language:
-		en
+:Email:
+   ghanshyam.typo3developer@gmail.com
 
-	:Description:
-		Cookie Privacy: The Cookie Law is a piece of privacy legislation that requires websites to get consent from visitors to store or retrieve any information on a computer, smartphone or tablet. Data Privacy: Datenschutz-Grundverordnung (DSGVO), englisch General Data Protection Regulation (GDPR) is a regulation of the European Union , which standardises the rules on the processing of personal data by private companies and public authorities across the EU. DSGVO is directly applicable from 25 May 2018.
+:License:
+   This document is published under the Open Content License
+      available from http://www.opencontent.org/opl.shtml
 
-	:Keywords:
-		cookie_data_privacy,cookie_consent,cookie_cuttr,cookie_law,cookie,DSGVO,GDPR,data_privacy,data_protection,data_law
+:Description:
+      Cookie Privacy: The Cookie Law is a piece of privacy legislation that requires websites to get consent from visitors to store or retrieve any information on a computer, smartphone or tablet. Data Privacy: Datenschutz-Grundverordnung (DSGVO), englisch General Data Protection Regulation (GDPR) is a regulation of the European Union , which standardises the rules on the processing of personal data by private companies and public authorities across the EU. DSGVO is directly applicable from 25 May 2018.
 
-	:Copyright:
-		2018
+:Keywords:
+      cookie_data_privacy,cookie_consent,cookie_cuttr,cookie_law,cookie,DSGVO,GDPR,data_privacy,data_protection,data_law
 
-	:Author:
-		Ghanshyam B. Gohel
+**TYPO3**
 
-	:Email:
-		ghanshyam.typo3developer@gmail.com
+   The content of this document is related to TYPO3 CMS,
+   a GNU/GPL CMS/Framework available from `typo3.org
+   <https://typo3.org/>`_ .
 
-	:License:
-		This document is published under the Open Content License
-		available from http://www.opencontent.org/opl.shtml
+**Community Documentation:**
 
-	:Rendered:
-		|today|
+   This documentation is community documentation for the TYPO3 extension {extension.name}
 
-	The content of this document is related to TYPO3,
-	a GNU/GPL CMS/Framework available from `www.typo3.org <http://www.typo3.org/>`_.
+   It is maintained as part of this third party extension.
 
-	**Table of Contents**
+   If you find an error or something is missing, please:
+   `Report a Problem <https://github.com/ghanshyamgohel/cookie_data_privacy/issues/new>`__
+
+**Extension Manual**
+
+   This documentation is for the TYPO3 extension <cookie_data_privacy>.
+
+
+
+**For Contributors**
+
+   You are welcome to help improve this guide. Just click on "Edit me on GitHub"
+   on the top right to submit your change request.
+
 
 .. toctree::
-	:maxdepth: 3
-	:titlesonly:
+   :maxdepth: 3
+   :hidden:
 
-	Introduction/Index
-	Administrator/Index
-	Developer/Index
-	KnownProblems/Index
-	Links
+
+   Introduction/Index
+   Administrator/Index
+   Developer/Index
+   KnownProblems/Index
+   Links/Index

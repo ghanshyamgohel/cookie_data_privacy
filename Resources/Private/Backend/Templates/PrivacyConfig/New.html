@@ -3,11 +3,13 @@
 
 <f:section name="content">
 
-<f:form action="create" name="newPrivacyConfig" object="{newPrivacyConfig}">
+<f:form action="create" name="newPrivacyConfig" object="{newPrivacyConfig}" id="form-validate" >
 	<div class="row show-grid">
         <div class="col-lg-12">
-            <button type="reset" class="btn btn-default pull-right btn-reset">Reset</button>
-            <button type="submit" class="btn btn-default pull-right">Save</button>
+            <div class="btn-toolbar mb-3">
+                <button type="submit" class="btn btn-default btn-sm"><core:icon identifier="actions-document-save" size="small"/> Save</button>
+                <f:link.action action="list" class="btn btn-default btn-sm t3js-editform-close"><core:icon identifier="actions-close" size="small"/> Close</f:link.action>
+            </div>
         </div>
     </div>
     <div class="row">
@@ -18,12 +20,20 @@
                 <div class="panel-body">
                 	<div class="col-lg-6 margin-top">
                 		<div class="form-group">
-                            <label>Domain</label>
-                            <f:form.textfield name="privacyconfig[domain]" class="form-control" value="{privacyConfigs.domain}"/>
+                            <label>Domain [Without protocol http:// or https://]</label>
+                            <f:form.textfield 
+                            name="privacyconfig[domain]" 
+                            class="form-control" 
+                            value="{privacyConfigs.domain}"
+                            additionalAttributes="{required:'required'}" />
                         </div>
                         <div class="form-group">
-                            <label>Root page UID [Your tree root UID]</label>
-                            <f:form.textfield name="privacyconfig[rootPageUid]" class="form-control" value="{privacyConfigs.rootPageUid}"/>
+                            <label>Root page UID</label>
+                            <f:form.textfield 
+                            name="privacyconfig[rootPageUid]" 
+                            class="form-control" 
+                            value="{privacyConfigs.rootPageUid}"
+                            additionalAttributes="{required:'required'}" />
                         </div>
                 	</div>
                 </div>

@@ -25,10 +25,10 @@
 				<source>Position</source>
 			</trans-unit>
 			<trans-unit id="tx_cookiedataprivacy_domain_model_privacyconfig.popup_background">
-				<source>Popup Background</source>
+				<source>Popup Background (default: #222)</source>
 			</trans-unit>
 			<trans-unit id="tx_cookiedataprivacy_domain_model_privacyconfig.button_background">
-				<source>Button Background</source>
+				<source>Button Background (default: #c8c8c8)</source>
 			</trans-unit>
 			<trans-unit id="tx_cookiedataprivacy_domain_model_privacyconfig.domain">
 				<source>Domain</source>
