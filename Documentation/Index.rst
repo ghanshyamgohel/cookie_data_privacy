@@ -43,7 +43,7 @@
 
 **Community Documentation:**
 
-   This documentation is community documentation for the TYPO3 extension {extension.name}
+   This documentation is community documentation for the TYPO3 extension cookie_data_privacy
 
    It is maintained as part of this third party extension.
 
@@ -52,7 +52,7 @@
 
 **Extension Manual**
 
-   This documentation is for the TYPO3 extension <cookie_data_privacy>.
+   This documentation is for the TYPO3 extension "cookie_data_privacy".
 
 
 
