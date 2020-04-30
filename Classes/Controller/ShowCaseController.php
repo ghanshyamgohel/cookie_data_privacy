@@ -54,7 +54,8 @@ class ShowCaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      */
     public function showAction()
     {
-        $GLOBALS['TSFE']->set_no_cache(); // set no cache for multi-language switch
+        // for multi-language switch
+        $this->view->assign("sysLanguageUid", $GLOBALS['TSFE']->sys_language_uid);
 
         $cookie_status = $_COOKIE['cookieconsent_status'];
 
