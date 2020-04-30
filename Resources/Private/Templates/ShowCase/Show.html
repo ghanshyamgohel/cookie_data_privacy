@@ -38,7 +38,7 @@
 </f:if>
 		
 <f:if condition="{privacyConfig}">
-<v:asset.script name="{privacyConfig.domain}_cookie_data_privacy" dependencies="jquery" fluid="TRUE" rewrite="TRUE" overwrite="TRUE">
+<v:asset.script name="{privacyConfig.domain}_cookie_data_privacy_{sysLanguageUid}" dependencies="jquery" fluid="TRUE" rewrite="TRUE" overwrite="TRUE">
 	/*
 	 * deleteCookies 
 	 * delete all cookies except those listed in the array essential
