@@ -32,6 +32,7 @@ namespace TYPO3Liebhaber\CookieDataPrivacy\ViewHelpers;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Core\Site\SiteFinder;
 
 class FormPrivacyViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
@@ -55,12 +56,11 @@ class FormPrivacyViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractVie
             $translateKey = $arguments['translateKey'];
         }
 
+        $pageUid = $GLOBALS['TSFE']->id;
+        $site = GeneralUtility::makeInstance(SiteFinder::class)->getSiteByPageId($pageUid);
         $rootPageUid = 0;
-        foreach ($GLOBALS['TSFE']->rootLine as $rootline) {
-            if ($rootline['is_siteroot']) {
-                $rootPageUid = (int)$rootline['uid'];
-                break;
-            }
+        if($site->getConfiguration()){
+            $rootPageUid = (int)$site->getConfiguration()['rootPageId'];
         }
         
         if (version_compare(TYPO3_version, '9.0.0', '<')) {
@@ -74,8 +74,7 @@ class FormPrivacyViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractVie
                 ->execute()
                 ->fetch();
         }
-        //DebuggerUtility::var_dump($formPrivacyData);exit;
-		
+        
 		// get extension settings
 		$objectManager = GeneralUtility::makeInstance('TYPO3\\CMS\Extbase\\Object\\ObjectManager');
 		$configurationManager = $objectManager->get('TYPO3\\CMS\\Extbase\\Configuration\\ConfigurationManager');

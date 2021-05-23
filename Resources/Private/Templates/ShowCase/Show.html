@@ -36,9 +36,9 @@
 	<f:then><v:variable.set name="buttonBackground" value='{privacyConfig.buttonBackground}' /></f:then>
 	<f:else><v:variable.set name="buttonBackground" value='#c8c8c8' /></f:else>
 </f:if>
-		
+
 <f:if condition="{privacyConfig}">
-<v:asset.script name="{privacyConfig.domain}_cookie_data_privacy" dependencies="jquery" fluid="TRUE" rewrite="TRUE" overwrite="TRUE">
+<v:asset.script name="{privacyConfig.domain}_cookie_data_privacy_{languageUid}" dependencies="jquery" fluid="TRUE" rewrite="TRUE" overwrite="TRUE">
 	/*
 	 * deleteCookies 
 	 * delete all cookies except those listed in the array essential
