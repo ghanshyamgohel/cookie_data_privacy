@@ -15,6 +15,8 @@ namespace TYPO3Liebhaber\CookieDataPrivacy\Domain\Repository;
 /**
  * The repository for PrivacyConfigs
  */
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 class PrivacyConfigRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 {
 	public function initializeObject(){
@@ -25,4 +27,19 @@ class PrivacyConfigRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         // store the new setting(s)
         $this->setDefaultQuerySettings($querySettings);
 	}
+
+    /**
+     * find by field
+     */
+    public function findByRootPageUid($rootPageUid){
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_cookiedataprivacy_domain_model_privacyconfig');
+        $statement = $queryBuilder
+        ->select('uid')
+        ->from('tx_cookiedataprivacy_domain_model_privacyconfig')
+        ->where(
+            $queryBuilder->expr()->eq('root_page_uid', $rootPageUid)
+        )->execute()->fetch();
+        $uid = (int)$statement['uid'];
+        return $this->findByIdentifier($uid);
+    }
 }
