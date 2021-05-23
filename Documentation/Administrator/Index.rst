@@ -55,7 +55,7 @@ The cookie messages/labels can be set from backend as shown in the screenshot.
 
 .. important::
 
-    Please donot forget to take backend of constants labels, now labels can be set from backend so we have removed from constants.
+    Please donot forget to take backup of constants labels, now labels can be set from backend so we have removed from constants.
     Note: If you have been used your template for this extension then please update your extension/view/template eg. Templates/ShowCase/Show.html
 
 .. important::
