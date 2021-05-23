@@ -19,6 +19,7 @@ namespace TYPO3Liebhaber\CookieDataPrivacy\Controller;
  use TYPO3\CMS\Core\Utility\GeneralUtility;
  use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
  use TYPO3\CMS\Extbase\Annotation\Inject;
+ use TYPO3\CMS\Core\Site\SiteFinder;
 
 class PrivacyConfigController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
@@ -26,7 +27,7 @@ class PrivacyConfigController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
      * privacyConfigRepository
      *
      * @var \TYPO3Liebhaber\CookieDataPrivacy\Domain\Repository\PrivacyConfigRepository
-     * @inject
+     * @Inject
      */
     protected $privacyConfigRepository = null;
 
@@ -34,7 +35,7 @@ class PrivacyConfigController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
      * fileIncludeRepository
      *
      * @var \TYPO3Liebhaber\CookieDataPrivacy\Domain\Repository\FileIncludeRepository
-     * @inject
+     * @Inject
      */
     protected $fileIncludeRepository = null;
     
@@ -90,8 +91,16 @@ class PrivacyConfigController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
         
         $uid = (int)$arguments['uid'];
         $privacyConfigs = $this->privacyConfigRepository->findByUid($uid);
-        //DebuggerUtility::var_dump($privacyConfigs);exit;
+
+        $languages = [];
+        $rootPageUid = $privacyConfigs->getRootPageUid();
+        $site = GeneralUtility::makeInstance(SiteFinder::class)->getSiteByPageId($rootPageUid);
+        if($site->getConfiguration()){
+            $languages = $site->getConfiguration()['languages'];
+        }
+        
         $this->view->assign('privacyConfigs', $privacyConfigs);
+        $this->view->assign('languages', $languages);
     }
 
     /**
@@ -164,7 +173,7 @@ class PrivacyConfigController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
             }
             $privacyConfigModel->setJsPathExternal($objectStorage);
         }
-        //DebuggerUtility::var_dump($objectStorage);exit;
+        
         // CSS external file
         $objectStorage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage;
         $cssexternal = $arguments['privacyconfig']['fileinclude']['css'];
@@ -191,13 +200,18 @@ class PrivacyConfigController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
             }
             $privacyConfigModel->setCssPathExternal($objectStorage);
         }
+        // save language labels
+        if($this->request->hasArgument('languagelabels')){
+            $languagelabels = $arguments['languagelabels'];
+            $this->privacyConfigRepository->addLanguageLabels($languagelabels);
+        }
         
-        ### write TS for Include library ###
+        // ### write TS for Include library ###
         $tsSourceFile = 'IncludeTs.txt.cp';$tsWritePath = 'Configuration/TypoScript/External/Domain/';
         $this->writeTSFile($tsSourceFile,$tsWritePath,$privacyConfigModel);
         
         $this->addFlashMessage('You have successfully updated the configuration.', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::OK);
-        //DebuggerUtility::var_dump($privacyConfigModel);exit;
+        
         $this->privacyConfigRepository->update($privacyConfigModel);
         $this->redirect('list');
     }

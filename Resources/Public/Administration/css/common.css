@@ -22,3 +22,7 @@
 .ml-3 {  margin-left: 15px !important;}
 .ml-4 {  margin-left: 20px !important;}
 .ml-5 {  margin-left: 25px !important;}
+/** accordion */
+.main-accordion{margin: 10px 0;}
+.my-custom-accordion{cursor: pointer;margin-top: 10px;padding: 10px !important;border: 1px solid #ccc;}
+.my-custom-accordion-content{border: 1px solid #ccc;}

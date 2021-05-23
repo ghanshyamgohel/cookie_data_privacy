@@ -42,4 +42,59 @@ class PrivacyConfigRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         $uid = (int)$statement['uid'];
         return $this->findByIdentifier($uid);
     }
+    /**
+     * add language labels
+     */
+    public function addLanguageLabels($languagelabels){
+        if($languagelabels){
+            foreach($languagelabels as $key=>$labelArr){
+                $sys_language_uid = (int)$labelArr['sys_language_uid'];
+                $privacyconfig = (int)$labelArr['privacyconfig'];
+                
+                $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_cookiedataprivacy_domain_model_languagelabels');
+                $checkExist = $queryBuilder
+                ->count('uid')
+                ->from('tx_cookiedataprivacy_domain_model_languagelabels')
+                ->where(
+                    $queryBuilder->expr()->eq('sys_language_uid', $sys_language_uid),
+                    $queryBuilder->expr()->eq('privacyconfig', $privacyconfig)
+                )->execute()->fetchColumn(0);
+                
+                if($checkExist){
+                    // update
+                    $queryBuilderUpdate = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_cookiedataprivacy_domain_model_languagelabels');
+                    $queryBuilderUpdate
+                    ->update('tx_cookiedataprivacy_domain_model_languagelabels')
+                    ->where(
+                        $queryBuilderUpdate->expr()->eq('sys_language_uid', $sys_language_uid),
+                        $queryBuilderUpdate->expr()->eq('privacyconfig', $privacyconfig)
+                    )
+                    ->set('sys_language_uid', $sys_language_uid)
+                    ->set('privacyconfig', $privacyconfig)
+                    ->set('cookiemessage', $labelArr['cookiemessage'])
+                    ->set('dismiss', $labelArr['dismiss'])
+                    ->set('allow', $labelArr['allow'])
+                    ->set('deny', $labelArr['deny'])
+                    ->set('link', $labelArr['link'])
+                    ->set('cookierevoke', $labelArr['cookierevoke'])
+                    ->execute();
+                }else{
+                    // insert
+                    $queryBuilderInsert = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_cookiedataprivacy_domain_model_languagelabels');
+                    $queryBuilderInsert
+                    ->insert('tx_cookiedataprivacy_domain_model_languagelabels')
+                    ->values([
+                        'sys_language_uid' => $sys_language_uid,
+                        'privacyconfig' => $privacyconfig,
+                        'cookiemessage' => $labelArr['cookiemessage'],
+                        'dismiss' => $labelArr['dismiss'],
+                        'allow' => $labelArr['allow'],
+                        'deny' => $labelArr['deny'],
+                        'link' => $labelArr['link'],
+                        'cookierevoke' => $labelArr['cookierevoke'],
+                    ])->execute();
+                }
+            }
+        }
+    }
 }

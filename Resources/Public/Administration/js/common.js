@@ -36,4 +36,10 @@ jQuery(document).ready(function($) {
 		return false;
 	});
 
+    $('.main-accordion').on('click', function() {
+        $('.my-custom-accordion-content').hide();
+        $('.my-custom-accordion-content').css('visibility','hidden');
+        $(this).find('.my-custom-accordion-content').show();
+        $(this).find('.my-custom-accordion-content').css('visibility','visible');
+    });
 });
