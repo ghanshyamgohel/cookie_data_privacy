@@ -1,4 +1,5 @@
 {namespace v=FluidTYPO3\Vhs\ViewHelpers}
+{namespace cp=TYPO3Liebhaber\CookieDataPrivacy\ViewHelpers}
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 <f:layout name="Default" />
 
@@ -8,26 +9,44 @@
 <f:format.raw>{privacyConfig.jsScript}</f:format.raw>
 </script>
 </f:if></f:if>
-<f:if condition="{settings.enableLanguage} == 1">
-	<f:then>
-		<v:variable.set name="cookieHeader" value='{settings.cookieHeader}' />
-		<v:variable.set name="cookieMessage" value='{settings.cookieMessage}' />
-		<v:variable.set name="cookieDismiss" value='{settings.cookieDismiss}' />
-		<v:variable.set name="cookieAllow" value='{settings.cookieAllow}' />
-		<v:variable.set name="cookieDeny" value='{settings.cookieDeny}' />
-		<v:variable.set name="cookieLink" value='{settings.cookieLink}' />
-		<v:variable.set name="cookieRevoke" value='{settings.cookieRevoke}' />
-	</f:then>
-	<f:else>
-		<v:variable.set name="cookieHeader" value='<f:translate key="LLL:EXT:cookie_data_privacy/Resources/Private/Language/locallang.xlf:tx_cookiedataprivacy_cookie_bar.header" />' />
-		<v:variable.set name="cookieMessage" value='<f:translate key="LLL:EXT:cookie_data_privacy/Resources/Private/Language/locallang.xlf:tx_cookiedataprivacy_cookie_bar.message" />' />
-		<v:variable.set name="cookieDismiss" value='<f:translate key="LLL:EXT:cookie_data_privacy/Resources/Private/Language/locallang.xlf:tx_cookiedataprivacy_cookie_bar.dismiss" />' />
-		<v:variable.set name="cookieAllow" value='<f:translate key="LLL:EXT:cookie_data_privacy/Resources/Private/Language/locallang.xlf:tx_cookiedataprivacy_cookie_bar.allow" />' />
-		<v:variable.set name="cookieDeny" value='<f:translate key="LLL:EXT:cookie_data_privacy/Resources/Private/Language/locallang.xlf:tx_cookiedataprivacy_cookie_bar.deny" />' />
-		<v:variable.set name="cookieLink" value='<f:translate key="LLL:EXT:cookie_data_privacy/Resources/Private/Language/locallang.xlf:tx_cookiedataprivacy_cookie_bar.link" />' />
-		<v:variable.set name="cookieRevoke" value='<f:translate key="LLL:EXT:cookie_data_privacy/Resources/Private/Language/locallang.xlf:tx_cookiedataprivacy_cookie_bar.revoke" />' />
-	</f:else>
+<v:variable.set name="cookieHeader" value='<f:translate key="LLL:EXT:cookie_data_privacy/Resources/Private/Language/locallang.xlf:tx_cookiedataprivacy_cookie_bar.header" />' />
+<v:variable.set name="cookieMessage" value="{cp:getLanguageLabels(fieldName:'cookiemessage',sys_language_uid:'{languageUid}',privacyconfig:'{privacyConfig.uid}')}" />
+<f:if condition="{cookieMessage}">
+    <f:else>
+        <v:variable.set name="cookieMessage" value='<f:translate key="LLL:EXT:cookie_data_privacy/Resources/Private/Language/locallang.xlf:tx_cookiedataprivacy_cookie_bar.message" />' />
+    </f:else>
 </f:if>
+<v:variable.set name="cookieDismiss" value="{cp:getLanguageLabels(fieldName:'dismiss',sys_language_uid:'{languageUid}',privacyconfig:'{privacyConfig.uid}')}" />
+<f:if condition="{cookieDismiss}">
+    <f:else>
+        <v:variable.set name="cookieDismiss" value='<f:translate key="LLL:EXT:cookie_data_privacy/Resources/Private/Language/locallang.xlf:tx_cookiedataprivacy_cookie_bar.dismiss" />' />
+    </f:else>
+</f:if>
+<v:variable.set name="cookieAllow" value="{cp:getLanguageLabels(fieldName:'allow',sys_language_uid:'{languageUid}',privacyconfig:'{privacyConfig.uid}')}" />
+<f:if condition="{cookieAllow}">
+    <f:else>
+        <v:variable.set name="cookieAllow" value='<f:translate key="LLL:EXT:cookie_data_privacy/Resources/Private/Language/locallang.xlf:tx_cookiedataprivacy_cookie_bar.allow" />' />
+    </f:else>
+</f:if>
+<v:variable.set name="cookieDeny" value="{cp:getLanguageLabels(fieldName:'deny',sys_language_uid:'{languageUid}',privacyconfig:'{privacyConfig.uid}')}" />
+<f:if condition="{cookieDeny}">
+    <f:else>
+        <v:variable.set name="cookieDeny" value='<f:translate key="LLL:EXT:cookie_data_privacy/Resources/Private/Language/locallang.xlf:tx_cookiedataprivacy_cookie_bar.deny" />' />
+    </f:else>
+</f:if>
+<v:variable.set name="cookieLink" value="{cp:getLanguageLabels(fieldName:'link',sys_language_uid:'{languageUid}',privacyconfig:'{privacyConfig.uid}')}" />
+<f:if condition="{cookieLink}">
+    <f:else>
+        <v:variable.set name="cookieLink" value='<f:translate key="LLL:EXT:cookie_data_privacy/Resources/Private/Language/locallang.xlf:tx_cookiedataprivacy_cookie_bar.link" />' />
+    </f:else>
+</f:if>
+<v:variable.set name="cookieRevoke" value="{cp:getLanguageLabels(fieldName:'cookierevoke',sys_language_uid:'{languageUid}',privacyconfig:'{privacyConfig.uid}')}" />
+<f:if condition="{cookieRevoke}">
+    <f:else>
+        <v:variable.set name="cookieRevoke" value='<f:translate key="LLL:EXT:cookie_data_privacy/Resources/Private/Language/locallang.xlf:tx_cookiedataprivacy_cookie_bar.revoke" />' />
+    </f:else>
+</f:if>
+
 <f:if condition="{privacyConfig.popupBackground}">
 	<f:then><v:variable.set name="popupBackground" value='{privacyConfig.popupBackground}' /></f:then>
 	<f:else><v:variable.set name="popupBackground" value='#222' /></f:else>

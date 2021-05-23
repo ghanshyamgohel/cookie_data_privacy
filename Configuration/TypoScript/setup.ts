@@ -19,14 +19,6 @@ plugin.tx_cookiedataprivacy_ext1 {
     #callDefaultActionIfActionCantBeResolved = 1
   }
   settings{
-    enableLanguage = {$plugin.tx_cookiedataprivacy_ext1.settings.enableLanguage}
-    cookieHeader = {$plugin.tx_cookiedataprivacy_ext1.settings.cookieHeader}
-    cookieMessage = {$plugin.tx_cookiedataprivacy_ext1.settings.cookieMessage}
-    cookieDismiss = {$plugin.tx_cookiedataprivacy_ext1.settings.cookieDismiss}
-    cookieAllow = {$plugin.tx_cookiedataprivacy_ext1.settings.cookieAllow}
-    cookieDeny = {$plugin.tx_cookiedataprivacy_ext1.settings.cookieDeny}
-    cookieLink = {$plugin.tx_cookiedataprivacy_ext1.settings.cookieLink}
-    cookieRevoke = {$plugin.tx_cookiedataprivacy_ext1.settings.cookieRevoke}
     dataRequired = {$plugin.tx_cookiedataprivacy_ext1.settings.dataRequired}
     dataCheckbox1 = {$plugin.tx_cookiedataprivacy_ext1.settings.dataCheckbox1}
     data_privacy_contact_form = {$plugin.tx_cookiedataprivacy_ext1.settings.dataCheckbox2}

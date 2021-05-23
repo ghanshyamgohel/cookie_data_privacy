@@ -48,6 +48,16 @@ Configuration for external JS libraries, Google Analytics script, ga('send') cli
 .. figure:: ../Images/backend_configuration.png
    :alt: Backend Configuration
 
+The cookie messages/labels can be set from backend as shown in the screenshot.
+
+.. figure:: ../Images/language_labels.png
+   :alt: Language Labels
+
+.. important::
+
+    Please donot forget to take backend of constants labels, now labels can be set from backend so we have removed from constants.
+    Note: If you have been used your template for this extension then please update your extension/view/template eg. Templates/ShowCase/Show.html
+
 .. important::
 
    Donot forget to Clear frontend caches and Clear all system-related caches (Flush all caches)

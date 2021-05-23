@@ -1,4 +1,4 @@
-
+{namespace cp=TYPO3Liebhaber\CookieDataPrivacy\ViewHelpers}
 <f:layout name="Default" />
 
 <f:section name="content">
@@ -24,6 +24,7 @@
                         <li class="active"><a href="#jsexternal" data-toggle="tab">JavaScript external</a></li>
                         <li><a href="#cssexternal" data-toggle="tab">CSS external</a></li>
                         <li><a href="#settings" data-toggle="tab">Settings</a></li>
+                        <li><a href="#labels" data-toggle="tab">Labels</a></li>
                     </ul>
 
                     <div class="tab-content">
@@ -226,6 +227,94 @@
                                     </div>
                                 </div>
                             </fieldset>
+                        </div>
+                        <div class="tab-pane fade" id="labels">
+                            <div class="panel-group panel-hover">
+                                <f:if condition="{languages}">
+                                    <f:for each="{languages}" as="languageList" iteration="Iteration">
+                                        <div class="panel-default panel-condensed panel-collapsed main-accordion">
+                                            <div class="panel-heading my-custom-accordion">
+                                                <div class="form-irre-header">
+                                                    <div class="form-irre-header-cell form-irre-header-icon">
+                                                        <span>
+                                                            <span class="t3js-icon icon icon-size-small icon-state-default icon-mimetypes-x-content-domain">
+                                                                <span class="icon-markup">
+                                                                    <img src="/typo3/sysext/core/Resources/Public/Icons/Flags/{languageList.flag}.png">
+                                                                </span>
+                                                            </span>
+                                                        </span>
+                                                    </div>
+                                                    <div class="form-irre-header-cell form-irre-header-body"><span>{languageList.title}</span></div>
+                                                </div>
+                                            </div>
+                                            <div class="panel-collapse my-custom-accordion-content">
+                                                <f:form.hidden name="languagelabels[{Iteration.index}][sys_language_uid]" value="{languageList.languageId}" />
+                                                <f:form.hidden name="languagelabels[{Iteration.index}][privacyconfig]" value="{privacyConfigs.uid}" />
+                                                <fieldset class="form-section">
+                                                    <div class="row">
+                                                        <div class="col-lg-6">
+                                                            <div class="form-group">
+                                                                <label>Cookie message:</label>
+                                                                <f:form.textarea name="languagelabels[{Iteration.index}][cookiemessage]" class="form-control" rows="10" value="{cp:getLanguageLabels(fieldName:'cookiemessage',sys_language_uid:'{languageList.languageId}',privacyconfig:'{privacyConfigs.uid}')}" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+                                                <fieldset class="form-section">
+                                                    <div class="row">
+                                                        <div class="col-lg-6">
+                                                            <div class="form-group">
+                                                                <label>Dismiss:</label>
+                                                                <f:form.textfield name="languagelabels[{Iteration.index}][dismiss]" class="form-control" value="{cp:getLanguageLabels(fieldName:'dismiss',sys_language_uid:'{languageList.languageId}',privacyconfig:'{privacyConfigs.uid}')}"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+                                                <fieldset class="form-section">
+                                                    <div class="row">
+                                                        <div class="col-lg-6">
+                                                            <div class="form-group">
+                                                                <label>Allow:</label>
+                                                                <f:form.textfield name="languagelabels[{Iteration.index}][allow]" class="form-control" value="{cp:getLanguageLabels(fieldName:'allow',sys_language_uid:'{languageList.languageId}',privacyconfig:'{privacyConfigs.uid}')}"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+                                                <fieldset class="form-section">
+                                                    <div class="row">
+                                                        <div class="col-lg-6">
+                                                            <div class="form-group">
+                                                                <label>Deny:</label>
+                                                                <f:form.textfield name="languagelabels[{Iteration.index}][deny]" class="form-control" value="{cp:getLanguageLabels(fieldName:'deny',sys_language_uid:'{languageList.languageId}',privacyconfig:'{privacyConfigs.uid}')}"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+                                                <fieldset class="form-section">
+                                                    <div class="row">
+                                                        <div class="col-lg-6">
+                                                            <div class="form-group">
+                                                                <label>Read more Link:</label>
+                                                                <f:form.textfield name="languagelabels[{Iteration.index}][link]" class="form-control" value="{cp:getLanguageLabels(fieldName:'link',sys_language_uid:'{languageList.languageId}',privacyconfig:'{privacyConfigs.uid}')}"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+                                                <fieldset class="form-section">
+                                                    <div class="row">
+                                                        <div class="col-lg-6">
+                                                            <div class="form-group">
+                                                                <label>Revoke:</label>
+                                                                <f:form.textfield name="languagelabels[{Iteration.index}][cookierevoke]" class="form-control" value="{cp:getLanguageLabels(fieldName:'cookierevoke',sys_language_uid:'{languageList.languageId}',privacyconfig:'{privacyConfigs.uid}')}"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                    </f:for>
+                                </f:if>
+                            </div>
                         </div>
                     </div>
                 </div>
