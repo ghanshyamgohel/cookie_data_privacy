@@ -17,8 +17,8 @@
   ],
   "version": "10.4.2",
   "require": {
-    "typo3/cms-core": "^9.5.27",
-    "fluidtypo3/vhs": "^5.0.0"
+    "typo3/cms-core": ">=9.5.27 <10.4.99",
+    "fluidtypo3/vhs": ">=5.0.0 <6.1.99"
   },
   "autoload": {
     "psr-4": {
