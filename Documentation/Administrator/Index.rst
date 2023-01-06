@@ -14,7 +14,7 @@ Installation
 
 You need to follow the steps to install the extension.
 
-- Download `vhs <https://extensions.typo3.org/extension/vhs>`__ dependency extension from TYPO3 Extension Repository and install the extension from extension manager.
+- Removed `vhs <https://extensions.typo3.org/extension/vhs>`__ from dependency extension.
 - Download cookie_data_privacy extension from TYPO3 Extension Repository.
 - Install the extension from extension manager.
 

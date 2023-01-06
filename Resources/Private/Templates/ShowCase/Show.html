@@ -1,4 +1,3 @@
-{namespace v=FluidTYPO3\Vhs\ViewHelpers}
 {namespace cp=TYPO3Liebhaber\CookieDataPrivacy\ViewHelpers}
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 <f:layout name="Default" />
@@ -9,55 +8,56 @@
 <f:format.raw>{privacyConfig.jsScript}</f:format.raw>
 </script>
 </f:if></f:if>
-<v:variable.set name="cookieHeader" value='<f:translate key="LLL:EXT:cookie_data_privacy/Resources/Private/Language/locallang.xlf:tx_cookiedataprivacy_cookie_bar.header" />' />
-<v:variable.set name="cookieMessage" value="{cp:getLanguageLabels(fieldName:'cookiemessage',sys_language_uid:'{languageUid}',privacyconfig:'{privacyConfig.uid}')}" />
+<f:variable name="cookieHeader" value='<f:translate key="LLL:EXT:cookie_data_privacy/Resources/Private/Language/locallang.xlf:tx_cookiedataprivacy_cookie_bar.header" />' />
+<f:variable name="cookieMessage" value="{cp:getLanguageLabels(fieldName:'cookiemessage',sys_language_uid:'{languageUid}',privacyconfig:'{privacyConfig.uid}')}" />
 <f:if condition="{cookieMessage}">
     <f:else>
-        <v:variable.set name="cookieMessage" value='<f:translate key="LLL:EXT:cookie_data_privacy/Resources/Private/Language/locallang.xlf:tx_cookiedataprivacy_cookie_bar.message" />' />
+        <f:variable name="cookieMessage" value='<f:translate key="LLL:EXT:cookie_data_privacy/Resources/Private/Language/locallang.xlf:tx_cookiedataprivacy_cookie_bar.message" />' />
     </f:else>
 </f:if>
-<v:variable.set name="cookieDismiss" value="{cp:getLanguageLabels(fieldName:'dismiss',sys_language_uid:'{languageUid}',privacyconfig:'{privacyConfig.uid}')}" />
+<f:variable name="cookieDismiss" value="{cp:getLanguageLabels(fieldName:'dismiss',sys_language_uid:'{languageUid}',privacyconfig:'{privacyConfig.uid}')}" />
 <f:if condition="{cookieDismiss}">
     <f:else>
-        <v:variable.set name="cookieDismiss" value='<f:translate key="LLL:EXT:cookie_data_privacy/Resources/Private/Language/locallang.xlf:tx_cookiedataprivacy_cookie_bar.dismiss" />' />
+        <f:variable name="cookieDismiss" value='<f:translate key="LLL:EXT:cookie_data_privacy/Resources/Private/Language/locallang.xlf:tx_cookiedataprivacy_cookie_bar.dismiss" />' />
     </f:else>
 </f:if>
-<v:variable.set name="cookieAllow" value="{cp:getLanguageLabels(fieldName:'allow',sys_language_uid:'{languageUid}',privacyconfig:'{privacyConfig.uid}')}" />
+<f:variable name="cookieAllow" value="{cp:getLanguageLabels(fieldName:'allow',sys_language_uid:'{languageUid}',privacyconfig:'{privacyConfig.uid}')}" />
 <f:if condition="{cookieAllow}">
     <f:else>
-        <v:variable.set name="cookieAllow" value='<f:translate key="LLL:EXT:cookie_data_privacy/Resources/Private/Language/locallang.xlf:tx_cookiedataprivacy_cookie_bar.allow" />' />
+        <f:variable name="cookieAllow" value='<f:translate key="LLL:EXT:cookie_data_privacy/Resources/Private/Language/locallang.xlf:tx_cookiedataprivacy_cookie_bar.allow" />' />
     </f:else>
 </f:if>
-<v:variable.set name="cookieDeny" value="{cp:getLanguageLabels(fieldName:'deny',sys_language_uid:'{languageUid}',privacyconfig:'{privacyConfig.uid}')}" />
+<f:variable name="cookieDeny" value="{cp:getLanguageLabels(fieldName:'deny',sys_language_uid:'{languageUid}',privacyconfig:'{privacyConfig.uid}')}" />
 <f:if condition="{cookieDeny}">
     <f:else>
-        <v:variable.set name="cookieDeny" value='<f:translate key="LLL:EXT:cookie_data_privacy/Resources/Private/Language/locallang.xlf:tx_cookiedataprivacy_cookie_bar.deny" />' />
+        <f:variable name="cookieDeny" value='<f:translate key="LLL:EXT:cookie_data_privacy/Resources/Private/Language/locallang.xlf:tx_cookiedataprivacy_cookie_bar.deny" />' />
     </f:else>
 </f:if>
-<v:variable.set name="cookieLink" value="{cp:getLanguageLabels(fieldName:'link',sys_language_uid:'{languageUid}',privacyconfig:'{privacyConfig.uid}')}" />
+<f:variable name="cookieLink" value="{cp:getLanguageLabels(fieldName:'link',sys_language_uid:'{languageUid}',privacyconfig:'{privacyConfig.uid}')}" />
 <f:if condition="{cookieLink}">
     <f:else>
-        <v:variable.set name="cookieLink" value='<f:translate key="LLL:EXT:cookie_data_privacy/Resources/Private/Language/locallang.xlf:tx_cookiedataprivacy_cookie_bar.link" />' />
+        <f:variable name="cookieLink" value='<f:translate key="LLL:EXT:cookie_data_privacy/Resources/Private/Language/locallang.xlf:tx_cookiedataprivacy_cookie_bar.link" />' />
     </f:else>
 </f:if>
-<v:variable.set name="cookieRevoke" value="{cp:getLanguageLabels(fieldName:'cookierevoke',sys_language_uid:'{languageUid}',privacyconfig:'{privacyConfig.uid}')}" />
+<f:variable name="cookieRevoke" value="{cp:getLanguageLabels(fieldName:'cookierevoke',sys_language_uid:'{languageUid}',privacyconfig:'{privacyConfig.uid}')}" />
 <f:if condition="{cookieRevoke}">
     <f:else>
-        <v:variable.set name="cookieRevoke" value='<f:translate key="LLL:EXT:cookie_data_privacy/Resources/Private/Language/locallang.xlf:tx_cookiedataprivacy_cookie_bar.revoke" />' />
+        <f:variable name="cookieRevoke" value='<f:translate key="LLL:EXT:cookie_data_privacy/Resources/Private/Language/locallang.xlf:tx_cookiedataprivacy_cookie_bar.revoke" />' />
     </f:else>
 </f:if>
 
 <f:if condition="{privacyConfig.popupBackground}">
-	<f:then><v:variable.set name="popupBackground" value='{privacyConfig.popupBackground}' /></f:then>
-	<f:else><v:variable.set name="popupBackground" value='#222' /></f:else>
+	<f:then><f:variable name="popupBackground" value='{privacyConfig.popupBackground}' /></f:then>
+	<f:else><f:variable name="popupBackground" value='#222' /></f:else>
 </f:if>
 <f:if condition="{privacyConfig.buttonBackground}">
-	<f:then><v:variable.set name="buttonBackground" value='{privacyConfig.buttonBackground}' /></f:then>
-	<f:else><v:variable.set name="buttonBackground" value='#c8c8c8' /></f:else>
+	<f:then><f:variable name="buttonBackground" value='{privacyConfig.buttonBackground}' /></f:then>
+	<f:else><f:variable name="buttonBackground" value='#c8c8c8' /></f:else>
 </f:if>
 
 <f:if condition="{privacyConfig}">
-<v:asset.script name="{privacyConfig.domain}_cookie_data_privacy_{languageUid}" dependencies="jquery" fluid="TRUE" rewrite="TRUE" overwrite="TRUE">
+	
+<f:asset.script identifier="{privacyConfig.domain}_cookie_data_privacy_{languageUid}">
 	/*
 	 * deleteCookies 
 	 * delete all cookies except those listed in the array essential
@@ -185,7 +185,7 @@
 		});
 	});
 	</f:if></f:if>
-</v:asset.script>
+</f:asset.script>
 </f:if>
 </f:section>
 </html>

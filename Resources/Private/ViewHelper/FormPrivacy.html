@@ -1,9 +1,8 @@
-{namespace v=FluidTYPO3\Vhs\ViewHelpers}
 <f:if condition="{formPrivacyData.enable_form_privacy} == 1">
 	<div class="data-privacy-form">
 		<f:if condition="{settings.enableLanguage} == 1">
 			<f:then>
-				<v:variable.set name="requiredMessage" value='{settings.dataRequired}' />
+				<f:variable name="requiredMessage" value='{settings.dataRequired}' />
 				<div class="checkbox checkbox1">
 					<label class="noselect">
 						<input class="cookie-required" type="checkbox">
@@ -20,7 +19,7 @@
 				</div>
 			</f:then>
 			<f:else>
-				<v:variable.set name="requiredMessage" value='<f:translate key="LLL:EXT:cookie_data_privacy/Resources/Private/Language/locallang.xlf:tx_cookiedataprivacy_data_privacy.required" />' />
+				<f:variable name="requiredMessage" value='<f:translate key="LLL:EXT:cookie_data_privacy/Resources/Private/Language/locallang.xlf:tx_cookiedataprivacy_data_privacy.required" />' />
 				<div class="checkbox checkbox1">
 					<label class="noselect">
 						<input class="cookie-required" type="checkbox">

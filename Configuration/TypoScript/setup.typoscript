@@ -31,7 +31,7 @@ page.includeCSS {
   fileCookieIncludeCss002 = EXT:cookie_data_privacy/Resources/Public/css/common.css
 }
 ### Include JS ###
-[globalVar = LIT:0 < {$plugin.tx_cookiedataprivacy_ext1.settings.enableJquery}]
+[{$plugin.tx_cookiedataprivacy_ext1.settings.enableJquery}]
   page.includeJS {
     fileCookieIncludeJs001 = EXT:cookie_data_privacy/Resources/Public/js/jquery.min.js
     fileCookieIncludeJs001.forceOnTop = 1
