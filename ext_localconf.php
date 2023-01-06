@@ -9,15 +9,15 @@ call_user_func(
             'TYPO3Liebhaber.CookieDataPrivacy',
             'Ext1',
             [
-            	'ShowCase' => 'show, list',
-                'PrivacyConfig' => 'new, create',
-                'FileInclude' => 'list, show'
+            	\TYPO3Liebhaber\CookieDataPrivacy\Controller\ShowCaseController::class => 'show, list',
+                \TYPO3Liebhaber\CookieDataPrivacy\Controller\PrivacyConfigController::class => 'new, create',
+                \TYPO3Liebhaber\CookieDataPrivacy\Controller\FileIncludeController::class => 'list, show'
             ],
             // non-cacheable actions
             [
-            	'ShowCase' => 'show',
-                'PrivacyConfig' => 'create',
-                'FileInclude' => ''
+            	\TYPO3Liebhaber\CookieDataPrivacy\Controller\ShowCaseController::class => 'show',
+                \TYPO3Liebhaber\CookieDataPrivacy\Controller\PrivacyConfigController::class => 'create',
+                \TYPO3Liebhaber\CookieDataPrivacy\Controller\FileIncludeController::class => ''
             ]
         );
 

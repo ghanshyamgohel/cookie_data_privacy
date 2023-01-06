@@ -15,15 +15,21 @@ namespace TYPO3Liebhaber\CookieDataPrivacy\Controller;
 /**
  * FileIncludeController
  */
+use TYPO3\CMS\Extbase\Annotation as Extbase;
+
 class FileIncludeController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
     /**
      * fileIncludeRepository
      *
      * @var \TYPO3Liebhaber\CookieDataPrivacy\Domain\Repository\FileIncludeRepository
-     * @inject
+     * @Extbase\Inject
      */
     protected $fileIncludeRepository = null;
+
+    public function injectFileIncludeRepository(\TYPO3Liebhaber\CookieDataPrivacy\Domain\Repository\FileIncludeRepository $fileIncludeRepository){
+        $this->fileIncludeRepository = $fileIncludeRepository;
+    }
 
     /**
      * action list

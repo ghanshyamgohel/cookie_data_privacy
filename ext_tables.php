@@ -13,7 +13,9 @@ call_user_func(
                 'mod1', // Submodule key
                 '', // Position
                 [
-                    'PrivacyConfig' => 'list, new, create, edit, update, delete','FileInclude' => 'list, show','ShowCase' => 'list, show',
+                    \TYPO3Liebhaber\CookieDataPrivacy\Controller\PrivacyConfigController::class => 'list, new, create, edit, update, delete',
+                    \TYPO3Liebhaber\CookieDataPrivacy\Controller\FileIncludeController::class => 'list, show',
+                    \TYPO3Liebhaber\CookieDataPrivacy\Controller\ShowCaseController::class => 'list, show',
                 ],
                 [
                     'access' => 'user,group',

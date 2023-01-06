@@ -18,7 +18,7 @@ namespace TYPO3Liebhaber\CookieDataPrivacy\Controller;
  use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
  use TYPO3\CMS\Core\Utility\GeneralUtility;
  use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
- use TYPO3\CMS\Extbase\Annotation\Inject;
+ use TYPO3\CMS\Extbase\Annotation as Extbase;
  use TYPO3\CMS\Core\Site\SiteFinder;
 
 class PrivacyConfigController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
@@ -27,18 +27,26 @@ class PrivacyConfigController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
      * privacyConfigRepository
      *
      * @var \TYPO3Liebhaber\CookieDataPrivacy\Domain\Repository\PrivacyConfigRepository
-     * @Inject
+     * @Extbase\Inject
      */
     protected $privacyConfigRepository = null;
+
+    public function injectPrivacyConfigRepository(\TYPO3Liebhaber\CookieDataPrivacy\Domain\Repository\PrivacyConfigRepository $privacyConfigRepository){
+        $this->privacyConfigRepository = $privacyConfigRepository;
+    }
 
     /**
      * fileIncludeRepository
      *
      * @var \TYPO3Liebhaber\CookieDataPrivacy\Domain\Repository\FileIncludeRepository
-     * @Inject
+     * @Extbase\Inject
      */
     protected $fileIncludeRepository = null;
     
+    public function injectFileIncludeRepository(\TYPO3Liebhaber\CookieDataPrivacy\Domain\Repository\FileIncludeRepository $fileIncludeRepository){
+        $this->fileIncludeRepository = $fileIncludeRepository;
+    }
+
     /**
      * action list
      *

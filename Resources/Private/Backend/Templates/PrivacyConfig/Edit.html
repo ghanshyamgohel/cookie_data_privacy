@@ -18,17 +18,17 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Configuration</div>
                 <!-- /.panel-heading -->
-                <div class="panel-body">
+                <div class="panel-body" role="tabpanel">
                     <!-- Nav tabs -->
-                    <ul class="nav nav-tabs">
-                        <li class="active"><a href="#jsexternal" data-toggle="tab">JavaScript external</a></li>
-                        <li><a href="#cssexternal" data-toggle="tab">CSS external</a></li>
-                        <li><a href="#settings" data-toggle="tab">Settings</a></li>
-                        <li><a href="#labels" data-toggle="tab">Labels</a></li>
+                    <ul class="nav nav-tabs" role="tablist" data-store-last-tab="1">
+                        <li role="presentation"><a href="#jsexternal" class="active" role="tab" data-bs-toggle="tab">JavaScript external</a></li>
+                        <li role="presentation"><a href="#cssexternal" role="tab" data-bs-toggle="tab">CSS external</a></li>
+                        <li role="presentation"><a href="#settings" role="tab" data-bs-toggle="tab">Settings</a></li>
+                        <li role="presentation"><a href="#labels" role="tab" data-bs-toggle="tab">Labels</a></li>
                     </ul>
 
                     <div class="tab-content">
-                        <div class="tab-pane fade in active" id="jsexternal">
+                        <div class="tab-pane fade show active" id="jsexternal" role="tabpanel">
                             <fieldset class="form-section">
                                 <div class="row">
                                     <div class="col-lg-6">
@@ -85,7 +85,7 @@
                                 </div>
                             </fieldset>
                         </div>
-                        <div class="tab-pane fade" id="cssexternal">
+                        <div class="tab-pane fade" id="cssexternal" role="tabpanel">
                             <fieldset class="form-section">
                                 <div class="row">
                                     <div class="col-lg-6">
@@ -121,7 +121,7 @@
                                 </div>
                             </fieldset>
                         </div>
-                        <div class="tab-pane fade" id="settings">
+                        <div class="tab-pane fade" id="settings" role="tabpanel">
                             <fieldset class="form-section">
                                 <div class="row">
                                     <div class="col-lg-6">
@@ -228,7 +228,7 @@
                                 </div>
                             </fieldset>
                         </div>
-                        <div class="tab-pane fade" id="labels">
+                        <div class="tab-pane fade" id="labels" role="tabpanel">
                             <div class="panel-group panel-hover">
                                 <f:if condition="{languages}">
                                     <f:for each="{languages}" as="languageList" iteration="Iteration">

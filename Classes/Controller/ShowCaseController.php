@@ -16,7 +16,7 @@ namespace TYPO3Liebhaber\CookieDataPrivacy\Controller;
  * ShowCaseController
  */
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
-use TYPO3\CMS\Extbase\Annotation\Inject;
+use TYPO3\CMS\Extbase\Annotation as Extbase;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Site\SiteFinder;
 
@@ -26,17 +26,25 @@ class ShowCaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      * showCaseRepository
      *
      * @var \TYPO3Liebhaber\CookieDataPrivacy\Domain\Repository\ShowCaseRepository
-     * @inject
+     * @Extbase\Inject
      */
     protected $showCaseRepository = null;
+    
+    public function injectShowCaseRepository(\TYPO3Liebhaber\CookieDataPrivacy\Domain\Repository\ShowCaseRepository $showCaseRepository){
+        $this->showCaseRepository = $showCaseRepository;
+    }
 
     /**
      * privacyConfigRepository
      *
      * @var \TYPO3Liebhaber\CookieDataPrivacy\Domain\Repository\PrivacyConfigRepository
-     * @inject
+     * @Extbase\Inject
      */
     protected $privacyConfigRepository = null;
+
+    public function injectPrivacyConfigRepository(\TYPO3Liebhaber\CookieDataPrivacy\Domain\Repository\PrivacyConfigRepository $privacyConfigRepository){
+         $this->privacyConfigRepository = $privacyConfigRepository;
+    }
 
     /**
      * action list
