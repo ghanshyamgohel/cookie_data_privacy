@@ -25,8 +25,8 @@
     }
   },
   "replace": {
-    "typo3-ter/cookie_data_privacy": "10.4.34",
-    "typo3liebhaber/cookie_data_privacy": "10.4.34"
+    "typo3-ter/cookie_data_privacy": "self.version",
+    "typo3liebhaber/cookie_data_privacy": "self.version"
   },
   "extra": {
     "typo3/cms": {
